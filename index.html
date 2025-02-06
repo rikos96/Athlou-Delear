@@ -32,14 +32,47 @@
 
         .logo {
             color: #ff4444;
-            font-size: 24px;
+            font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background: #1a1a1a;
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links a {
+                margin: 0.5rem 0;
+            }
+
+            .menu-toggle {
+                display: block;
+                font-size: 1.5rem;
+                color: white;
+                cursor: pointer;
+            }
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            margin-left: 30px;
+            margin-left: 1.875rem;
             transition: color 0.3s;
         }
 
@@ -49,21 +82,21 @@
 
         /* Hero Section */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
                         url('https://images.unsplash.com/photo-1581009137042-c552e485697a') center/cover;
-                      /*   url('https://images.unsplash.com/photo-1581009137042-c552e485697a') center/cover;   */
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             color: white;
             padding-top: 80px;
+            padding: 1rem;
         }
 
         .hero-content h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 1.25rem;
         }
 
         .hero-content p {
@@ -184,6 +217,9 @@
     <header>
         <nav>
             <div class="logo">ΑΘΛΟΥ ΔΕΛΕΑΡ</div>
+            <div class="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
             <div class="nav-links">
                 <a href="#home">Αρχική</a>
                 <a href="#features">Χαρακτηριστικά</a>
@@ -255,6 +291,13 @@
     <script src="https://apis.google.com/js/api.js"></script>
     <script>
         document.getElementById('year').textContent = new Date().getFullYear();
+
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('.nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
     </script>
 </body>
 </html>
