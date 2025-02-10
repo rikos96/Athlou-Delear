@@ -87,11 +87,20 @@
         .menu-toggle {
             color: var(--white);
         }
+        /* Visible state for menu toggle */
+        .menu-toggle.active {
+            color: var(--primary);
+        }
 
+        /* Also apply color when nav is active */
+        .nav-links.active + .menu-toggle {
+            color: var(--primary);
+        }
         /* Base menu toggle style */
         .menu-toggle {
             color: var(--primary);
             display: none;
+            height: auto;  /* This will make the nav-links height adjust to its content */
         }
 
         @media screen and (max-width: 768px) {
@@ -108,40 +117,57 @@
 
         @media screen and (max-width: 768px) {
             .menu-toggle {
-                display: block;  /* Show only on mobile */
-                font-size: 1.5rem;
-                color: var(--primary);    /* Changed from rgba(27, 26, 26, 0) */
-                cursor: pointer;
+            display: block;  /* Show only on mobile */
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
             }
 
             .menu-toggle:hover {
-                color: var(--secondary);
+            color: var(--secondary);
+            }
+
+            /* Add header expansion styles */
+            header.expanded {
+            height: auto;
+            padding-bottom: 1rem;
             }
 
             .nav-links {
-                display: none;
-                width: 100%;
-                position: absolute;
-                top: 70px;
-                left: 0;
-                background: var(--white);
-                flex-direction: column;
-                padding: 1rem;
+            display: none;
+            width: 100%;
+            position: absolute;
+            top: 60px; /* Adjusted to match mobile header height */
+            left: 0;
+            background: var(--white);
+            flex-direction: column;
+            padding: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-top: 1px solid rgba(172, 112, 163, 0.1);
             }
 
             .nav-links.active {
-                display: flex;
+            display: flex;
             }
 
             .nav-links a {
-                margin: 0.5rem 0;
+            margin: 0.5rem 0;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            text-align: center;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            }
+
+            .nav-links a:hover {
+            background-color: rgba(172, 112, 163, 0.1);
+            color: var(--primary);
             }
 
             .menu-toggle {
-                display: block;
-                font-size: 1.5rem;
-            /*     color: rgba(27, 26, 26, 0); */
-                cursor: pointer;
+            display: block;
+            font-size: 1.5rem;
+            cursor: pointer;
             }
         }
 
@@ -211,7 +237,7 @@
 
         .feature-card i {
             font-size: 40px;
-            color: var(--primary);
+            color: var (--primary);
             margin-bottom: 20px;
         }
 
@@ -239,9 +265,9 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
         }
 
         .calendar-container {
@@ -250,6 +276,8 @@
             height: 0;
             padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
             overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .calendar-container iframe {
@@ -260,6 +288,31 @@
             height: 100%;
             border: none;
             background: var(--white);
+        }
+
+        .custom-calendar-container {
+            width: 100%;
+            margin-top: 30px;
+        }
+
+        .custom-calendar {
+            width: 100%;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+            display: block;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1px;
+            margin-top: 20px;
+            border: 1px solid rgba(172, 112, 163, 0.2);
+            border-radius: 4px;
+            overflow: hidden;
         }
 
         /* Contact Section */
@@ -403,6 +456,161 @@
         footer #year {
             color: var(--white);
         }
+
+        /* Add to your existing styles */
+        .custom-calendar {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header button {
+            background: var(--white);
+            border: 1px solid var(--primary);
+            color: var(--primary);
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .calendar-header button:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 1px;
+            background: var(--primary);
+            border: 1px solid rgba(172, 112, 163, 0.2);
+        }
+
+        .time-column {
+            background: var(--white);
+            padding: 8px;
+        }
+
+        .days-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            background: var(--white);
+        }
+
+        .time-slot {
+            padding: 8px;
+            border-bottom: 1px solid rgba(172, 112, 163, 0.1);
+            text-align: right;
+            color: var(--text-dark);
+        }
+
+        .day-column {
+            border-left: 1px solid rgba(172, 112, 163, 0.1);
+        }
+
+        .day-header {
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .event-slot {
+            padding: 8px;
+            min-height: 60px;
+            border-bottom: 1px solid rgba(172, 112, 163, 0.1);
+        }
+
+        .event {
+            background: rgba(172, 112, 163, 0.1);
+            border-radius: 4px;
+            padding: 8px;
+            margin: 2px 0;
+            font-size: 0.9em;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .event:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .classes-grid {
+                gap: 20px;
+                padding: 10px;
+            }
+            
+            .custom-calendar {
+                padding: 10px;
+            }
+        }
+
+        .classes-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(172, 112, 163, 0.1);
+        }
+
+        .classes-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var (--white);
+        }
+
+        .classes-table th,
+        .classes-table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgba(172, 112, 163, 0.2);
+        }
+
+        .classes-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .classes-table td {
+            color: var(--text-dark);
+        }
+
+        .classes-table tr:hover {
+            background-color: rgba(172, 112, 163, 0.05);
+        }
+
+        .classes-table td:not(:empty) {
+            background-color: rgba(172, 112, 163, 0.1);
+        }
+
+        @media (max-width: 768px) {
+            .classes-table {
+                font-size: 14px;
+            }
+            
+            .classes-table th,
+            .classes-table td {
+                padding: 8px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -453,14 +661,23 @@
 
     <section class="classes" id="classes">
         <h2 class="section-title">Τα Μαθήματά μας</h2>
-        <div class="classes-grid">
-            <div class="calendar-container">
-                <iframe 
-                    src="https://calendar.google.com/calendar/embed?src=rikos969%40gmail.com&ctz=Europe%2FAthens&mode=WEEK&showNav=1&showTitle=0&showCalendars=0" 
-                    frameborder="0" 
-                    scrolling="no">
-                </iframe>
-            </div>
+        <div class="classes-container">
+            <table class="classes-table">
+                <thead>
+                    <tr>
+                        <th>Ώρα/Ημέρα</th>
+                        <th>Δευτέρα</th>
+                        <th>Τρίτη</th>
+                        <th>Τετάρτη</th>
+                        <th>Πέμπτη</th>
+                        <th>Παρασκευή</th>
+                        <th>Σάββατο</th>
+                    </tr>
+                </thead>
+                <tbody id="schedule-body">
+                    <!-- Will be populated by JavaScript -->
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -514,6 +731,31 @@
         menuToggle.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             header.classList.toggle('expanded');
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('classes.json')
+                .then(response => response.json())
+                .then(data => {
+                    const tbody = document.getElementById('schedule-body');
+                    data.schedule.forEach(row => {
+                        const tr = document.createElement('tr');
+                        row.forEach(cell => {
+                            const td = document.createElement('td');
+                            td.textContent = cell || ''; // Handle empty cells
+                            tr.appendChild(td);
+                        });
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error loading schedule:', error);
+                    document.querySelector('.classes-container').innerHTML = `
+                        <p style="color: var(--text-dark); text-align: center; padding: 20px;">
+                            Δεν ήταν δυνατή η φόρτωση του προγράμματος. Παρακαλώ δοκιμάστε αργότερα.
+                        </p>
+                    `;
+                });
         });
     </script>
 </body>
